@@ -31,6 +31,16 @@ const mongoDB = async () => {
     
     // Create a model based on the schema
     const Contact = mongoose.model("Contact", contactSchema);
+
+    // Create a schema for your contact model
+    // const regiSchema = new mongoose.Schema({
+    //   name: String,
+    //   email: String,
+    //   contactNumber: String,
+    // });
+    
+    // Create a model based on the schema
+    // const Registration = mongoose.model("Registration", regiSchema);
     
     
 }

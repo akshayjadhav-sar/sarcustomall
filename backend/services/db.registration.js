@@ -21,16 +21,26 @@ const mongoDB = async () => {
       useUnifiedTopology: true,
     });
     
-    // Create a schema for your contact model
-    const contactSchema = new mongoose.Schema({
-      name: String,
-      email: String,
-      contactNumber: String,
-      yourMessage: String,
-    });
+    const regiSchema = new mongoose.Schema({
+        name: String,
+        email: String,
+        contactNumber: String,
+      });
+      
+      // Create a model based on the schema
+      const Registration = mongoose.model("Registration",regiSchema );
+      
+      
+  
+
+    // const contactSchema1 = new mongoose.Schema({
+    //     name: String,
+    //     email: String,
+    //     contactNumber: String,
+    //   });
     
     // Create a model based on the schema
-    const Contact = mongoose.model("registration", registrationSchema);
+    //const Contact = mongoose.model("registration", registrationSchema);
     
     // const express = require("express");
     // // const mongoose = require("mongoose");

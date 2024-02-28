@@ -23,3 +23,21 @@ const {contactSchema}=new Schema({
     }
     
 });
+// const {regiSchema}=new Schema({
+
+//     name:{
+//         type :String,
+//         require:true,
+
+//     },
+//     eamil:{
+//         type : String,
+//         unique:true,
+//         require:true,
+//     },
+//     subject :{
+//         type:String,
+//         require :true,
+//     },
+    
+// });

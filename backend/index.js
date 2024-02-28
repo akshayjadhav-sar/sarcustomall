@@ -32,67 +32,36 @@
 
 // server.js or app.js
 
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
-// const cors = require("cors"); // Import the cors middleware
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors"); // Import the cors middleware
 
-// const app = express();
-// const PORT = 5000;
+const app = express();
+const PORT = 5000;
 
-// // Middleware
-// app.use(bodyParser.json());
-// app.use(cors()); // Enable CORS for all routes
+// Middleware
+app.use(bodyParser.json());
+app.use(cors()); // Enable CORS for all routes
 
-// // Connect to MongoDB
-// mongoose.connect("mongodb://localhost:27017/your_database", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+// Connect to MongoDB
+mongoose.connect("mongodb://localhost:27017/your_database", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-// // Create a schema for your contact model
-// const contactSchema = new mongoose.Schema({
-//   name: String,
-//   email: String,
-//   contactNumber: String,
-//   yourMessage: String,
-// });
+// Create a schema for your contact model
+const contactSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  contactNumber: String,
+  yourMessage: String,
+});
 
-// // Create a model based on the schema
-// const Contact = mongoose.model("Contact", contactSchema);
+// Create a model based on the schema
+const Contact = mongoose.model("Contact", contactSchema);
 
 // Route to handle POST requests from the frontend
-app.post("/api/registration", async (req, res) => {
-  try {
-    const { name, email, contactNumber,  } = req.body;
-    console.log("end point hited");
-    // console.log("name "+name);
-    // console.log("email "+email);
-    // console.log("contactNumber "+contactNumber);
-
-    // Create a new contact document
-    const newregistration = new registration({
-      name,
-      email,
-      contactNumber,
-    });
-
-    // Save the contact to the database
-    await newContact.save();
-
-    res.status(201).json({ message: "Contact saved successfully" });
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ message: "Server error" });
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-
-
 app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, contactNumber, yourMessage } = req.body;
@@ -120,39 +89,47 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+
+
+
+// Registration form start
+
+const regiSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  contactNumber: String,
+});
+
+// Create a model based on the schema
+const Registration = mongoose.model("Registration", regiSchema);
+
+// Route to handle POST requests from the frontend
+app.post("/api/registration", async (req, res) => {
+  try {
+    const { name, email, contactNumber } = req.body;
+    console.log("end point hited");
+    // console.log("name "+name);
+    // console.log("email "+email);
+    // console.log("contactNumber "+contactNumber);
+
+    // Create a new contact document
+    const newRegi = new Registration({
+      name,
+      email,
+      contactNumber,
+    });
+
+    // Save the contact to the database
+    await newRegi.save();
+
+    res.status(201).json({ message: "newRegi saved successfully" });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-
-
-
-
-// app.post("/api/registrations", async (req, res) => {
-//   try {
-//     const { name, email, contactNumber, } = req.body;
-//     console.log("end point hited");
-//     // console.log("name "+name);
-//     // console.log("email "+email);
-//     // console.log("contactNumber "+contactNumber);
-
-//     // Create a new contact document
-//     const newRegistrations = new Registrations({
-//       name,
-//       email,
-//       contactNumber,
-//     });
-
-//     // Save the contact to the database
-//     await newRegistrations.save();
-
-//     res.status(201).json({ message: "registrations saved successfully" });
-//   } catch (error) {
-//     console.error("Error:", error);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// });
-
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
